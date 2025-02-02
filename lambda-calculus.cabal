@@ -1,0 +1,87 @@
+cabal-version:      3.0
+-- The cabal-version field refers to the version of the .cabal specification.
+-- Starting from version 2.2, it must be the first thing in the cabal file.
+
+-- The name of the package.
+name:               lambda-calculus
+
+-- The package version.
+version:            0.1.0.0
+
+-- A short (one-line) description of the package.
+synopsis:           A simple implementation of lambda calculus in Haskell
+
+-- A longer description of the package.
+description:       This package implements a basic lambda calculus interpreter with a REPL and beta reduction.
+
+-- The license under which the package is released.
+license:            BSD-3-Clause
+
+-- The file containing the license text.
+license-file:       LICENSE
+
+-- The package author(s).
+author:             Dominic Satnoianu
+
+-- An email address to which users can send suggestions, bug reports, and patches.
+maintainer:         44111026+domi-s@users.noreply.github.com
+
+-- Copyright notice.
+copyright:          (c) 2025 Dominic Satnoianu
+
+build-type:         Simple
+
+-- Extra doc files to be distributed with the package, such as CHANGELOG or README.
+extra-doc-files:    CHANGELOG.md
+
+-- Common warning flags for compilation
+ghc-options:        -Wall
+
+library
+    -- Modules exposed by the library
+    exposed-modules:  LambdaCalc, Eval, REPL, Church
+
+    -- Modules included in this library but not exported
+    -- other-modules:  
+
+    -- Dependencies of the library
+    build-depends:    base ^>=4.17.2.1
+
+    -- Directories containing source files for the library
+    hs-source-dirs:   src
+
+    -- Base language the package is written in
+    default-language: Haskell2010
+
+executable lambda-calculus
+    -- The entrypoint to the executable (Main module)
+    main-is:          Main.hs
+
+    -- Dependencies for the executable
+    build-depends:
+        base ^>=4.17.2.1,
+        lambda-calculus
+
+    -- Directories containing source files for the executable
+    hs-source-dirs:   app
+
+    -- Base language for the executable
+    default-language: Haskell2010
+
+test-suite lambda-calculus-test
+    -- The interface type and version of the test suite
+    type:             exitcode-stdio-1.0
+
+    -- Directories containing source files for the test suite
+    hs-source-dirs:   test
+
+    -- The entrypoint to the test suite (Main module)
+    main-is:          Main.hs
+
+    -- Test dependencies
+    build-depends:
+        base ^>=4.17.2.1,
+        lambda-calculus
+
+    -- Base language for the test suite
+    default-language: Haskell2010
