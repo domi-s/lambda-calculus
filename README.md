@@ -1,5 +1,7 @@
 # Lambda Calculus in Haskell
 
+By Dominic Satnoianu
+
 A simple implementation of λ-Calculus in Haskell for learning purposes. If you want to learn more about Lambda Calculus, this project is a good starting point to test out some basic operations and play with Church encodings such as booleans and natural numbers, as well as β-reduction.
 
 The project is a work in progress, and I plan to add more features and tests in the future.
@@ -65,6 +67,18 @@ True AND False: λx. λy. y
 True OR False: λx. λy. x
 Not True: λx. λy. y
 If True then 'true' else 'false': true
+```
+
+Because `True AND False` is `False`, we can use beta reduction (function application) to check if it is correct. Church boolean `True` is represented as `λx. λy. x`, and `False` is `λx. λy. y`. The `AND` operation is defined as `λp. λq. p q p`, so `True AND False` should reduce to `False`:
+
+```
+True AND False: ((λx. λy. x λx. λy. x) λx. λy. y)
+
+(1) Reduce (λx. λy. x λx. λy. y). This can be seen as a function that takes two arguments and returns the first one: `λx. λy. x`. Provide `λx. λy. x` as the first argument.
+
+(2) We then get a function that is waiting for a single argument (the second one needed to be provided earlier), and will not be taken into account in the reduction, because the first function discards it. This is `λx. λy. y`.
+
+(3) So the answer, reduced, is `λx. λy. y`, which is `False`.
 ```
 
 ## Dependencies
